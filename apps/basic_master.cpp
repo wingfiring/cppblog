@@ -87,9 +87,17 @@ std::string filter(std::string const &html)
 	return cppcms::xss::filter(html,xss_filter(),cppcms::xss::escape_invalid);
 }
 
+const int K_markdown_flags = 
+0x00000004|		//MKD_NOPANTS 
+0x01000000| 	//MKD_DLEXTRA 
+0x02000000| 	//MKD_FENCEDCODE  
+0x08000000| 	//MKD_GITHUBTAGS  
+0x40000000| 	//MKD_LATEX 
+;
+
 std::string markdown_to_html(std::string const &input)
 {
-	int flags = 0x0004; // no_pants
+	int flags = K_markdown_flags;
 	/// It is safe to const cast as mkd_string does not 
 	/// alter original string
 	MMIOT *doc = mkd_string(const_cast<char *>(input.c_str()),input.size(),flags);
