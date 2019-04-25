@@ -93,7 +93,7 @@ const int K_markdown_flags =
 0x02000000| 	//MKD_FENCEDCODE  
 0x08000000| 	//MKD_GITHUBTAGS  
 0x40000000| 	//MKD_LATEX 
-;
+0;
 
 std::string markdown_to_html(std::string const &input)
 {
